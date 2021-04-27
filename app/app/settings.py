@@ -34,9 +34,9 @@ SECRET_KEY = 'hvc4o(^w4yccvy1@o0ogn*zisod3v)z0$1is6sikwf8@a4l8@l'
 #el original es True
 DEBUG = True
 
-ALLOWED_HOSTS = ['*'] 
-#el original es []
-# ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['*'] 
+# el original es []
+ALLOWED_HOSTS = []
 
 # Application definition
 
