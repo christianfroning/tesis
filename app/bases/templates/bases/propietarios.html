@@ -1,0 +1,118 @@
+{%load static%}
+{%block slider%}{%endblock%}
+{%block footer%}{%endblock%}
+{%block nav%}{%endblock%}
+
+{% block listado_propietarios%}
+
+<style>
+    .close-modal img {
+        position: relative;
+        top: 0.1rem;
+        height: 30px;
+        width: 30px;
+        transition: .2s ease-in;
+    }
+    
+    .close-modal img:hover {
+        width: 33px;
+        height: 33px;
+        transform:rotate(180deg) ;
+    }
+
+    #social {
+        height: 60px;
+    }
+
+    #social .btn {
+        margin-top: 10px;
+        transition: 0.3s ease-in-out;
+    }
+
+    #social .btn:hover{
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(to top, rgb(3, 0, 172), rgb(17, 247, 55));
+        transform: translateY(-5px);
+        cursor: pointer;
+    }
+
+    @media (min-width: 800px) {
+
+        .container-prod #members {
+            max-width: 800px;
+        }
+    }
+    
+    .team-member img{
+        height: 12rem;
+        width: 12rem;
+    }
+
+</style>
+
+<div class="container">
+    <div class="portfolio-modal modal-dialog modal-lg " tabindex="-1" role="document" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal"><img src="{% static 'base/assets/img/eliminar.png' %}"
+                    alt="Close modal" /></div>
+            <!-- <button class="close" data-dismiss="modal">&times;</button> -->
+            <div class="container-prod">
+
+                <div class="container" id="members">
+                    <div class="text-center">
+                        <h2 class="section-heading text-uppercase">Propietarios</h2>
+                    </div>
+                    <hr>
+                    {% if emp %}
+                    <div class="row">
+                        {% for e in emp %}
+                        <div class="col-lg-4">
+                            <div class="team-member">
+                                {% if e.imagen %}
+                                <img class="mx-auto rounded-circle" src='{{e.imagen.url}}' alt="" />
+                                {% endif %}
+                                <h4>{{e.nombres}}</h4>
+                                <p>{{e.apellidos}}</p>
+                                <!-- <p class="text-muted">Propietarios</p> -->
+
+                                <div id="social">
+                                    {% if e.twitter %}
+                                    <a class="btn btn-dark btn-social mx-2" href="{{e.twitter}}" target="blank">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    {% endif %}
+                                    {% if e.facebook %}
+                                    <a class="btn btn-dark btn-social mx-2" href="{{e.facebook}}" target="blank">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    {% endif %}
+                                    {% if e.instagram %}
+                                    <a class="btn btn-dark btn-social mx-2" href="{{e.instagram}}" target="blank"><i
+                                            class="fab fa-instagram"></i></a>
+                                    {% endif %}
+                                    {% if e.email %}
+                                    <a class="btn btn-dark btn-social mx-2"
+                                        href="{% url 'bases:enviarcorreo' pk=e.pk%}"><i id="icon-social" class="fas fa-envelope"></i></a>
+                                    {% endif %}
+                                    {% if e.whatsapp %}
+                                    <a class="btn btn-dark btn-social mx-2" href="{{e.whatsapp}}" target="blank"><i id="icon-social"
+                                            class="fab fa-whatsapp"></i></a>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="alert alert-danger text-center">No hay emprendedor que mostrar por el momento
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

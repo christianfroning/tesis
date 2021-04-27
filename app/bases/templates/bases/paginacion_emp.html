@@ -1,0 +1,50 @@
+<style>
+    .barra_pag{
+        padding: 30px;
+    }
+
+    .row {
+        justify-content: center;
+
+    }
+
+    .fila {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .paginacion {
+        background: white;
+    }
+
+    .page-item a {
+        background: #008000;
+    }
+</style>
+
+
+<div class="row">
+    <nav class="paginacion">
+        <ul class="pagination">
+            {%if emprendimientos.has_previous %}
+                <li class="page-item">
+                    <a href="?page=1" class="page-link">Primera página</a>
+                </li>
+
+                <li class="page-item">
+                    <a href="?page={{emprendimientos.previous_page_number}}" class="page-link">&laquo;</a>
+                </li>
+            {%endif%}
+
+            {%if emprendimientos.has_next %}
+                <li class="page-item">
+                    <a href="?page={{emprendimientos.next_page_number}}" class="page-link">&raquo;</a>
+                </li>
+
+                <li class="page-item">
+                    <a href="?page={{emprendimientos.paginator.num_pages}}" class="page-link">Última página</a>
+                </li>
+            {%endif%}
+        </ul>
+    </nav>
+</div>

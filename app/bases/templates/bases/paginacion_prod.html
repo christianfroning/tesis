@@ -1,0 +1,50 @@
+<style>
+    .barra_pag{
+        padding: 30px;
+    }
+
+    .row {
+        justify-content: center;
+
+    }
+
+    .fila {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .paginacion {
+        background: white;
+    }
+
+    .page-item a {
+        background: #008000;
+    }
+    
+</style>
+
+<div class="row">
+    <nav class="paginacion">
+        <ul class="pagination">
+            {%if productos.has_previous %}
+                <li class="page-item">
+                    <a href="?page=1" class="page-link">Primera página</a>
+                </li>
+
+                <li class="page-item">
+                    <a href="?page={{productos.previous_page_number}}" class="page-link">&laquo;</a>
+                </li>
+            {%endif%}
+
+            {%if productos.has_next %}
+                <li class="page-item">
+                    <a href="?page={{productos.next_page_number}}" class="page-link">&raquo;</a>
+                </li>
+
+                <li class="page-item">
+                    <a href="?page={{productos.paginator.num_pages}}" class="page-link">Última página</a>
+                </li>
+            {%endif%}
+        </ul>
+    </nav>
+</div>
